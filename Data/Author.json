@@ -1,0 +1,27 @@
+﻿[
+  {
+    "Id": 1,
+    "Name": "Nguyen Van A",
+    "Description": "ICT"
+  },
+  {
+    "Id": 2,
+    "Name": "Nguyen Van B",
+    "Description": "ICT"
+  },
+  {
+    "Id": 3,
+    "Name": "Nguyen Van C",
+    "Description": "ICT"
+  },
+  {
+    "Id": 4,
+    "Name": "Nguyen Van D",
+    "Description": "ICT"
+  },
+  {
+    "Id": 5,
+    "Name": "Nguyen Van E",
+    "Description": "ICT"
+  }
+]

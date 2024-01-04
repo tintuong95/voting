@@ -1,0 +1,82 @@
+﻿[
+  {
+    "Id": 1,
+    "Name": "Album 1 Lorem Ipsum ",
+    "Description": "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature",
+    "AuthorId": 1,
+    "Like": 100,
+    "Share": 100
+  },
+  {
+    "Id": 2,
+    "Name": "Album 2 Lorem Ipsum ",
+    "Description": "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature",
+    "AuthorId": 2,
+    "Like": 100,
+    "Share": 100
+  },
+  {
+    "Id": 3,
+    "Name": "Album 3 Lorem Ipsum",
+    "Description": "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature",
+    "AuthorId": 3,
+    "Like": 100,
+    "Share": 100
+  },
+  {
+    "Id": 4,
+    "Name": "Album 4 Lorem Ipsum ",
+    "Description": "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature",
+    "AuthorId": 4,
+    "Like": 100,
+    "Share": 100
+  },
+  {
+    "Id": 5,
+    "Name": "Album 5 Lorem Ipsum ",
+    "Description": "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature",
+    "AuthorId": 5,
+    "Like": 100,
+    "Share": 100
+  },
+  {
+    "Id": 6,
+    "Name": "Album 6 Lorem Ipsum ",
+    "Description": "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature",
+    "AuthorId": 5,
+    "Like": 100,
+    "Share": 100
+  },
+  {
+    "Id": 7,
+    "Name": "Album 7 Lorem Ipsum ",
+    "Description": "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature",
+    "AuthorId": 5,
+    "Like": 100,
+    "Share": 100
+  },
+  {
+    "Id": 8,
+    "Name": "Album 8 Lorem Ipsum ",
+    "Description": "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature",
+    "AuthorId": 5,
+    "Like": 100,
+    "Share": 100
+  },
+  {
+    "Id": 9,
+    "Name": "Album 9 Lorem Ipsum ",
+    "Description": "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature",
+    "AuthorId": 5,
+    "Like": 100,
+    "Share": 100
+  },
+  {
+    "Id": 10,
+    "Name": "Album 10 Lorem Ipsum ",
+    "Description": "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature",
+    "AuthorId": 5,
+    "Like": 100,
+    "Share": 100
+  }
+]

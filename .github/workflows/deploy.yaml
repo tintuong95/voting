@@ -1,0 +1,29 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 7.0
+
+    - name: Build and deploy
+      run: |
+        dotnet restore
+        dotnet build --configuration Release
+        dotnet publish -c Release -o publish
+        echo 'Contents of publish folder:'
+        ls publish
+      env:
+        DOTNET_ROOT: ${{ steps.setup-dotnet.outputs.dotnet-path }}

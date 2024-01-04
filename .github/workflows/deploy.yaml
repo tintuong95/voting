@@ -35,9 +35,8 @@ jobs:
     - name: Deploy to Azure
       uses: azure/webapps-deploy@v2
       with:
-        app-name: <your-app-name>  # Thay thế bằng tên ứng dụng của bạn trên Azure
+        app-name: voting  # Thay thế bằng tên ứng dụng của bạn trên Azure
         package: ${{ github.workspace }}/publish
         slot-name: production  # Thay thế bằng slot name nếu có
 
-    - name: Check deployed site
-      run: curl -sI <your-app-url>  # Thay thế bằng URL của ứng dụng đã triển khai
+    

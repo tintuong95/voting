@@ -85,8 +85,9 @@ export default function ShowResult() {
     const [albums, setAlbums] = useState([]);
     const [authors, setAuthors] = useState([]);
     const [ratings, setRatings] = useState([]);
+    const swiperRef = useRef()
     const { id } = useSelector((state) => state?.auth);
-    const myRef = useRef();
+    const [my_swiper, set_my_swiper] = useState({});
     const sumPointTotal = () => {
         const groupedData = _.groupBy(ratings, 'albumId');
         const result = _.mapValues(groupedData, (group) => _.sumBy(group, 'point'));
@@ -141,12 +142,16 @@ export default function ShowResult() {
                 FRIWO RESULT VOTING{' '}
             </div>
             <div className='flex gap-5 items-center justify-center'></div>
-            <div className='p-4 w-8/12 m-auto friwo-flag'>
+            <div className='py-4 w-10/12 m-auto friwo-flag'>
                 <Swiper
+                    slidesPerView={"auto"}
+                    onInit={(ev) => {
+                        set_my_swiper(ev)
+                    }}
                     effect={'coverflow'}
                     grabCursor={true}
                     centeredSlides={true}
-                    slidesPerView={'auto'}
+
                     coverflowEffect={{
                         rotate: 50,
                         stretch: 0,
@@ -164,13 +169,13 @@ export default function ShowResult() {
                         } = swiperCore;
                         console.log({ activeIndex, snapIndex, previousIndex, realIndex });
                         startAnimation()
-                        setTimeout(() => { pauseAnimation() }, 2000)
+                        setTimeout(() => { pauseAnimation() }, 1200)
                     }}
                     modules={[EffectCoverflow, Pagination]}
                     className='mySwiper p-4 pb-20'
                 >
                     <SwiperSlide className='l'>
-                        <div className='text-center text-2xl font-extrabold p-10 animate-pulse  text-gray-300 flex flex-col  items-center gap-2 justify-center'>
+                        <div onClick={() => { my_swiper.slideTo(1); }} className='text-center text-2xl font-extrabold p-10 animate-pulse  text-gray-300 flex flex-col  items-center gap-2 justify-center'>
                             <VscDebugStart />
 
                             START

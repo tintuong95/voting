@@ -96,7 +96,10 @@ const BaseModal = ({ data, vote }) => {
     return (
         <>
             {contextHolder}
-            {!vote && <button onClick={() => setOpen(true)} className='col-span-1 
+            {!vote && <button onClick={(e) => {
+                e.stopPropagation()
+                setOpen(true)
+            }} className='col-span-1 
             text-center cursor-pointer bg-rose-500 hover:scale-105 transition-all duration-150 ease-in-out py-1 text-white rounded  
             flex items-center justify-center gap-2 text-sm'>
                 <FaHeart />
@@ -110,10 +113,20 @@ const BaseModal = ({ data, vote }) => {
                 title={<div className='text-center'>RATING</div>}
                 centered
                 open={open}
-                onOk={() => setOpen(false)}
-                onCancel={() => setOpen(false)}
+                destroyOnClose={true}
+                onOk={(e) => {
+                    e.stopPropagation()
+                    setOpen(false)
+                }}
+                onCancel={(e) => {
+                    e.stopPropagation()
+                    setOpen(false)
+                }}
                 footer={<div className='text-center px-7'>
-                    <button className='bg-rose-500  mb-4 text-white w-full text-lg  py-2 rounded-md flex items-center justify-center gap-2' onClick={CreatePoint}><FaHeart /> VOTING</button>
+                    <button className='bg-rose-500  mb-4 text-white w-full text-lg  py-2 rounded-md flex items-center justify-center gap-2' onClick={(e) => {
+                        e.stopPropagation()
+                        CreatePoint()
+                    }}><FaHeart /> VOTING</button>
                 </div>}
 
             >

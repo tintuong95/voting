@@ -8,14 +8,19 @@ const contentStyle = {
 
 };
 const BaseSilder = ({ data, auto = false }) => (
-    <Carousel autoplay={auto} className='rounded-lg ' >
-        {data?.map(item => <div>
-            <h3 style={contentStyle}>
-                <img alt="d" src={item} className='w-full  shadow-md object-cover overflow-hidden ' />
-            </h3>
-        </div>)}
+    // <Carousel autoplay={auto} className='rounded-lg ' >
+    //     {data?.map(item => <div>
+    //         <h3 style={contentStyle}>
+    //             <img alt="d" src={item} className='w-full h-52  shadow-md object-center object-cover overflow-hidden ' />
+    //         </h3>
+    //     </div>)}
 
 
-    </Carousel>
+    // </Carousel>
+    <div>
+        <h3 style={contentStyle}>
+            <img alt="d" src={data[1]} className='w-full h-52  shadow-md object-center object-cover overflow-hidden ' />
+        </h3>
+    </div>
 );
 export default BaseSilder;

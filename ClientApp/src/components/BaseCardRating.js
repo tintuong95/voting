@@ -17,16 +17,16 @@ export default function BaseCardRating({ data, id, auth }) {
         }).catch(e => { console.log(e) })
     }, [data?.id])
     return (
-        <div class='w-full relative bg-white  rounded  z-10  border h-full flex flex-col  '>
+        <div class='w-full relative bg-white  rounded  z-10  border h-full   '>
             {/* <div className="mt-10">
             <h5 class="mb-2 text-lg text-center font-bold tracking-tight  dark:text-white text-yellow-100">{data?.name || 'No Name'}</h5>
         </div> */}
-            <div className='m-5 z-50 h-1/2'>
-                {pathList.length > 0 && <img className='h-52 object-center object-cover' src={pathList[1]} alt="dddd" />}
+            <div className='m-5 z-50 '>
+                {pathList.length > 0 && <img className='h-full object-center object-cover' src={pathList[0]} alt="dddd" />}
             </div>
-            <div class='p-5 pt-2 h-full'>
+            <div class='p-5 pt-2 '>
                 <div className='w-full h-full  flex flex-col justify-between'>
-                    <div className='text-xl font-semibold '> {data?.name}</div>
+                    {/* <div className='text-xl font-semibold '> {data?.name}</div>
                     <div className='flex items-center gap-2 italic mb-2'><TiUser className='text-gray-400' /> {auth?.name}</div>
                     <p>
                         {
@@ -37,7 +37,7 @@ export default function BaseCardRating({ data, id, auth }) {
                             }
                             )
                         }
-                    </p>
+                    </p> */}
                     <div className=' font-bold rounded text-white text-center text-lg bg-yellow-400 mt-4 px-4 py-1 uppercase flex items-center justify-center gap-2 '> <FaRegStar />
                         <span >{data?.point}</span> </div>
                 </div>

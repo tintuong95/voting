@@ -19,7 +19,7 @@ const BaseSilder = ({ data, auto = false }) => (
     // </Carousel>
     <div>
         <h3 style={contentStyle}>
-            <img alt="d" src={data[1]} className='w-full h-52  shadow-md object-center object-cover overflow-hidden ' />
+            <img alt="d" src={data[0]} className='w-full h-full  shadow-md object-center object-cover overflow-hidden ' />
         </h3>
     </div>
 );

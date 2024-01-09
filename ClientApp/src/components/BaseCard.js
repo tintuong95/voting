@@ -31,7 +31,7 @@ export default function BaseCard({ data, id, auth, point, vote }) {
             <BaseSilder data={pathList} />
         </div>
         <div class=" p-5 pt-2 ">
-            <div >
+            {/* <div >
                 <h5 class=" text-lg font-semibold tracking-tight   ">{data?.name || 'No Name'}</h5>
                 <div className='flex items-center gap-2 italic mb-2'><TiUser className='text-gray-400' /> {auth?.name}</div>
                 <p>{
@@ -42,7 +42,7 @@ export default function BaseCard({ data, id, auth, point, vote }) {
                     }
                     )
                 }</p>
-            </div>
+            </div> */}
             <div className="grid grid-cols-2 items-center justify-between gap-5 mt-5">
                 <BaseModal vote={vote} data={data} />
                 <BaseDrawer vote={vote} point={point} data={data} auth={auth}></BaseDrawer>

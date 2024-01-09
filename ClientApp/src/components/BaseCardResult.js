@@ -18,11 +18,11 @@ export default function BaseCardResult({ data, auth, point, rank, length }) {
     return <div class=" relative bg-white rounded-md border  z-10    ">
 
         <div className='m-5 z-50'>
-            {pathList.length > 0 && <img src={pathList[1]} alt="dddd" />}
+            {pathList.length > 0 && <img src={pathList[0]} alt="dddd" />}
         </div>
         <div class="p-5 pt-2">
-            <h5 class=" text-lg font-semibold tracking-tight  text-center   ">{data?.name || 'No Name'}</h5>
-            <div className='flex items-center gap-2 italic justify-center mb-4'><TiUser className='text-gray-400' /> {auth?.name}</div>
+            {/* <h5 class=" text-lg font-semibold tracking-tight  text-center   ">{data?.name || 'No Name'}</h5>
+            <div className='flex items-center gap-2 italic justify-center mb-4'><TiUser className='text-gray-400' /> {auth?.name}</div> */}
             <div className='flex items-center justify-center gap-3 mb-10' >
                 <div className='bg-yellow-400 px-4 py-1 rounded-md shadow-2xl font-semibold flex justify-center items-center gap-2 '> <FaRankingStar className='animate-pulse' />
                     RANK {length - rank}</div>

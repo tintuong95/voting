@@ -13,5 +13,7 @@ namespace Voting.Services.Interfaces
         Rating UpdateAsync(int id, Rating author);
 
         int RemoveAsync(int id);
+
+        string RemoveAllAsync();
     }
 }

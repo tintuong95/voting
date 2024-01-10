@@ -65,5 +65,17 @@ namespace Voting.Services
             System.IO.File.WriteAllText(@"./Data/Rating.json", jsonString);
             return id;
         }
+
+        public string RemoveAllAsync()
+        {
+            Ratings.RemoveAll(c => true);
+
+
+
+            string jsonString = JsonConvert.SerializeObject(Ratings);
+
+            System.IO.File.WriteAllText(@"./Data/Rating.json", jsonString);
+            return "Success";
+        }
     }
 }

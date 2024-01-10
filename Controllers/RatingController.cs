@@ -53,5 +53,13 @@ namespace Voting.Controllers
             var rs = _ratingService.CreateAsync(rating);
             return Ok(rs);
         }
+
+        [HttpGet]
+        [Route("remove-all")]
+        public IActionResult RemoveAll()
+        {
+            var rs = _ratingService.RemoveAllAsync();
+            return Ok(rs);
+        }
     }
 }

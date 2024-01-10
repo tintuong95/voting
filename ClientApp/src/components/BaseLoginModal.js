@@ -9,26 +9,38 @@ import { useSelector } from "react-redux"
 import { BiSolidLogInCircle } from "react-icons/bi";
 import { signInSuccess, signOutAction } from '../stores/authReducer';
 import axios from "axios"
+import _ from 'lodash';
 const BaseLoginModal = () => {
     const [open, setOpen] = useState(false);
     const [api, contextHolder] = notification.useNotification();
     const dispatch = useDispatch()
     const onFinish = (values) => {
-        axios.post("/account/signin", values).then(result => {
-            dispatch(signInSuccess(result.data))
-        }).then(r => {
-            setOpen(false)
-            api.success({
-                message: `Login succefully!`,
-                placement: "bottom"
-            });
-        }).catch(error => {
-            dispatch(signOutAction())
-            api.error({
-                message: `Login failture!`,
-                placement: "bottom"
-            });
-        })
+        const payload = {
+            id: _.random(1, 100000),
+            ...values
+        }
+
+        dispatch(signInSuccess(payload))
+        api.success({
+            message: `Login succefully!`,
+            placement: "bottom"
+        });
+        setOpen(false)
+        // axios.post("/account/signin", values).then(result => {
+        //     dispatch(signInSuccess(result.data))
+        // }).then(r => {
+        //     setOpen(false)
+        //     api.success({
+        //         message: `Login succefully!`,
+        //         placement: "bottom"
+        //     });
+        // }).catch(error => {
+        //     dispatch(signOutAction())
+        //     api.error({
+        //         message: `Login failture!`,
+        //         placement: "bottom"
+        //     });
+        // })
 
         // dispatch(loginAction(values))
     };
@@ -66,7 +78,7 @@ const BaseLoginModal = () => {
                     >
                         <Input size='large' className='border rounded border-gray-200' prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Username" />
                     </Form.Item>
-                    <Form.Item
+                    {/* <Form.Item
                         name="password"
                         // label="Password"
                         rules={[
@@ -83,7 +95,7 @@ const BaseLoginModal = () => {
                             type="password"
                             placeholder="Password"
                         />
-                    </Form.Item>
+                    </Form.Item> */}
                     <Button size='large' htmlType="submit" className="login-form-button rounded w-full flex justify-center items-center gap-2 bg-rose-500 text-white uppercase">
                         Log in <BiSolidLogInCircle size={23} />
 

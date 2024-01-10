@@ -30,7 +30,7 @@ const customIcons = {
 const BaseModal = ({ data, vote }) => {
     const [api, contextHolder] = notification.useNotification();
     const mitt = useMittEmit()
-    const { id } = useSelector(state => state.auth)
+    const { id, username } = useSelector(state => state.auth)
     const [open, setOpen] = useState(false);
     const [rating, setRating] = useState(3)
     const [point, setPoint] = useState(50)
@@ -40,7 +40,7 @@ const BaseModal = ({ data, vote }) => {
         refAnimationInstance.current = instance;
     }, []);
 
-
+    console.log("data, vote ", data, vote)
 
     const CreatePoint = () => {
         if (!id) {
@@ -50,7 +50,7 @@ const BaseModal = ({ data, vote }) => {
             });
         }
         const payload = {
-            accountId: id,
+            accountId: username,
             albumId: data.id,
             point: point
         }
@@ -131,7 +131,10 @@ const BaseModal = ({ data, vote }) => {
 
             >
                 <Rate disabled onChange={(e) => { setPoint(e) }} value={rating} className='text-center mt-4 w-full' character={({ index = 0 }) => customIcons[index + 1]} />
-                <Slider defaultValue={point} onChange={(e) => { setPoint(e) }} className='my-8  w-4/5 m-auto' />
+                <Slider defaultValue={point} onChange={(e) => {
+
+                    setPoint(e)
+                }} className='my-8  w-4/5 m-auto' />
             </Modal>
             <ReactCanvasConfetti refConfetti={getInstance} style={canvasStyles} />
         </>

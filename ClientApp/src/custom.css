@@ -35,10 +35,16 @@ body {
   .bg-photo{
     width: 100%;
     background-image:  linear-gradient(to bottom, rgba(169, 255, 119, 0.418), rgba(255, 218, 51, 0.568)),
-    url('./bg.jpg');;
+    url('./bg.jpg');
   /*  background-attachment: fixed;
     background-position: center;
     background-size: cover;*/
+    
+  }
+  .bg-result{
+    width: 100%;
+    background-image:  linear-gradient(to bottom, rgba(255, 255, 255, 0.418), rgba(247, 247, 247, 0.568)),
+    url('./bg-2.jpg');
     
   }
   .lds-ellipsis {

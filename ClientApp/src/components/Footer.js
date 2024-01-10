@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 
 
 export default function Footer() {
@@ -11,9 +12,9 @@ export default function Footer() {
                     <span class="self-center text-2xl text-center">Friwo</span>
                 </a>
                 <ul class="flex flex-wrap justify-center items-center mb-6 text-sm font-medium text-center  sm:mb-0 dark:text-gray-400">
-                    <li>
-                        <a href="#" class="hover:underline me-4 md:me-6">About</a>
-                    </li>
+                    <Link to={"/qrcode"}>
+                        <a href="#" class="hover:underline me-4 md:me-6">Qrcode</a>
+                    </Link>
                     <li>
                         <a href="#" class="hover:underline me-4 md:me-6">Privacy Policy</a>
                     </li>

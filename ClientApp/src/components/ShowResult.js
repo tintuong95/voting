@@ -128,19 +128,19 @@ export default function ShowResult() {
         };
     }, [intervalId]);
     return (
-        <div className=''>
+        <div className='flex h-screen bg-result bg-cover bg-center justify-center items-center'>
             {/* <div className='fixed top-2 left-2'>  <NavLink to="/">Home</NavLink></div> */}
             <ReactCanvasConfetti refConfetti={getInstance} style={canvasStyles} />
-            <div className='flex justify-center items-center mt-10 mb-3'>
+            {/* <div className='flex justify-center items-center mt-10 mb-3'>
                 <FaStar className='text-yellow-500 animate-pulse ' size={24} />
                 <FaStar className='text-yellow-500' size={28} />
                 <FaStar className='text-yellow-500 animate-pulse' size={32} />
                 <FaStar className='text-yellow-500' size={28} />
                 <FaStar className='text-yellow-500 animate-pulse' size={24} />
-            </div>
-            <div className='text-center text-4xl font-extrabold    bg-gradient-to-r from-rose-600 via-orange-400 to-yellow-500  animate-gradient text-transparent bg-clip-text'>
+            </div> */}
+            {/* <div className='text-center text-4xl font-extrabold    bg-gradient-to-r from-rose-600 via-orange-400 to-yellow-500  animate-gradient text-transparent bg-clip-text'>
                 FRIWO RESULT VOTING{' '}
-            </div>
+            </div> */}
             <div className='flex gap-5 items-center justify-center'></div>
             <div className='py-4 w-10/12 m-auto friwo-flag'>
                 <Swiper
@@ -174,8 +174,8 @@ export default function ShowResult() {
                     modules={[EffectCoverflow, Pagination]}
                     className='mySwiper p-4 pb-20'
                 >
-                    <SwiperSlide className='l'>
-                        <div onClick={() => { my_swiper.slideTo(1); }} className='text-center text-2xl font-extrabold p-10 animate-pulse  text-gray-300 flex flex-col  items-center gap-2 justify-center'>
+                    <SwiperSlide className='bg-sky-400 bg-opacity-25 rounded-md shadow-md flex justify-center items-center'>
+                        <div onClick={() => { my_swiper.slideTo(1); }} className='text-center text-2xl font-extrabold p-10 animate-pulse  text-yellow-500 flex flex-col  items-center gap-2 justify-center'>
                             <VscDebugStart />
 
                             START

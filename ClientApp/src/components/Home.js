@@ -50,7 +50,7 @@ export default function Home() {
     const [authors, setAuthors] = useState([]);
     const [ratings, setRatings] = useState([]);
     const [accounts, setAccounts] = useState([]);
-    const { id, show } = useSelector((state) => state?.auth);
+    const { id, show, username } = useSelector((state) => state?.auth);
     const [open, set] = useState(true);
     const refAnimationInstance = useRef(null);
     const dispatch = useDispatch()
@@ -111,28 +111,7 @@ export default function Home() {
         return result.sort((a, b) => b?.point - a?.point);
     };
 
-    const text = `
-  A dog is a type of domesticated animal.
-  Known for its loyalty and faithfulness,
-  it can be found as a welcome guest in many households across the world.
-`;
-    const items = [
-        {
-            key: '1',
-            label: 'This is panel header 1',
-            children: <p>{text}</p>,
-        },
-        {
-            key: '2',
-            label: 'This is panel header 2',
-            children: <p>{text}</p>,
-        },
-        {
-            key: '3',
-            label: 'This is panel header 3',
-            children: <p>{text}</p>,
-        },
-    ];
+
 
     const fetchAllData = () => {
         Promise.all([axios.get('/album'), axios.get('/author'), axios.get('/rating'), axios.get('/account')])
@@ -151,7 +130,7 @@ export default function Home() {
             .finally(() => { });
     };
     useEffect(() => {
-        // mitt.emit("HELLO")
+
         fetchAllData();
     }, []);
     useMittOn('fire', (eventData) => {
@@ -159,6 +138,7 @@ export default function Home() {
     });
 
     useEffect(() => {
+
         setTimeout(() => {
             mitt.emit('SHOW_DETAIL_BY_ID_' + searchParams.get('id'));
             console.log('SHOW_DETAIL_BY_ID_' + searchParams.get('id'));
@@ -191,14 +171,22 @@ export default function Home() {
                 </div>
                 <div></div>
             </div>
-            <div className='text-center text-4xl font-extrabold   mt-16 bg-gradient-to-r from-rose-600 to-yellow-500   text-transparent bg-clip-text'>
+            {/* <div className='text-center text-4xl font-extrabold   mt-16 bg-gradient-to-r from-rose-600 to-yellow-500   text-transparent bg-clip-text'>
                 Overview
-            </div>
+            </div> 
             <div className='text-center  px-4 mb-3 mt-3 max-w-96 m-auto'>
                 We challenge the fashion talents within the company to imagine and create outfits that embody vitality and relentless innovation.
-            </div>
-            <div className='text-center'>
-                <div className='flex'>
+            </div>*/}
+            <div className='text-center flex items-center gap-2 justify-center'>
+                <div className='flex mt-8'>
+                    <NavLink
+                        to={"/slider"}
+                        className='rounded  bg-yellow-400  px-9 py-1 hover:shadow-lg text-white flex items-center m-auto gap-2 font-semibold mt-3'>
+                        <FaRegFaceGrinStars />
+
+                        SLIDER</NavLink>
+                </div>
+                <div className='flex mt-8'>
                     <NavLink
                         to={"/result"}
                         className='rounded  bg-yellow-400  px-9 py-1 hover:shadow-lg text-white flex items-center m-auto gap-2 font-semibold mt-3'>
@@ -212,20 +200,16 @@ export default function Home() {
 
                 {/* <Countdown format='DD:HH:mm:ss' value={deadline} /> */}
             </div>
-            <div className='w-2/3 my-2' />
+
             {/* <div className='text-center  px-4 '>
         Lorem Ipsum is simply dummy text of the printing and typesetting industry.
       </div> */}
-            <div className='mt-10 m-auto'>
-                <div className=' hidden max-lg:grid m-auto'>
+            <div className='mt-0 m-auto'>
+                {/* <div className=' hidden max-lg:grid m-auto'>
                     {<Swiper
                         slidesPerView={1}
                         spaceBetween={30}
-                        // autoplay={{
-                        //     delay: 3400,
-                        //     disableOnInteraction: false,
-
-                        // }}
+                    
                         modules={[Pagination, Navigation]} //Autoplay, 
                         pagination={{
                             clickable: true,
@@ -236,9 +220,7 @@ export default function Home() {
                             .map((item, index) => (
                                 <SwiperSlide>
                                     <div className='w-full'>
-                                        {/* <div className={`font-extrabold text-2xl text-gray-500 text-center mb-2 ${show ? "" : "blur-sm"}`}>
-                      TOP {index + 1}
-                    </div> */}
+                                 
                                         <div className='w-full'>
                                             <BaseCardRating data={item} auth={_.find(authors, (i) => i?.id == item?.authorId)} />
                                         </div>
@@ -248,16 +230,16 @@ export default function Home() {
                             .shuffle()
                             .value()}{' '}
                     </Swiper>}
-                </div>
+                </div> */}
 
-                <div className=' hidden   lg:grid  m-auto'>
+                {/* <div className=' hidden   lg:grid  m-auto'>
                     {<Swiper
                         slidesPerView={3}
                         spaceBetween={30}
-                        // autoplay={{
-                        //     delay: 3400,
-                        //     disableOnInteraction: false,
-                        // }}
+                        autoplay={{
+                            delay: 3400,
+                            disableOnInteraction: false,
+                        }}
                         modules={[Pagination, Navigation]}
                         pagination={{
                             clickable: true,
@@ -268,9 +250,9 @@ export default function Home() {
                             .map((item, index) => (
                                 <SwiperSlide>
                                     <div className='w-full h-full'>
-                                        {/* <div className={`font-extrabold text-2xl text-gray-500 text-center mb-2 ${show ? "" : "blur-sm"}`}>
+                                        <div className={`font-extrabold text-2xl text-gray-500 text-center mb-2 ${show ? "" : "blur-sm"}`}>
                       TOP {index + 1}
-                    </div> */}
+                    </div>
                                         <div className='w-full h-full'>
                                             <BaseCardRating data={item} auth={_.find(authors, (i) => i?.id == item?.authorId)} />
                                         </div>
@@ -280,9 +262,9 @@ export default function Home() {
                             .shuffle()
                             .value()}{' '}
                     </Swiper>}
-                </div>
-                <div className='px-10 my-16 md:w-6/12 lg:w-6/12 2xl:w-6/12 m-auto'>
-                    {/* <div className='text-center text-4xl font-extrabold  mt-10 bg-gradient-to-r from-rose-600 to-yellow-500 mb-3 text-transparent bg-clip-text'>
+                </div> */}
+                {/* <div className='px-10 my-16 md:w-6/12 lg:w-6/12 2xl:w-6/12 m-auto'> */}
+                {/* <div className='text-center text-4xl font-extrabold  mt-10 bg-gradient-to-r from-rose-600 to-yellow-500 mb-3 text-transparent bg-clip-text'>
             {' '}
             Table
           </div>
@@ -290,10 +272,10 @@ export default function Home() {
             Lorem Ipsum is simply dummy text of the printing and typesetting industry.
           </div>
           <BaseTable data={show ? mapAlbumPoint() : _.shuffle(mapAlbumPoint())} /> */}
-                </div>
+                {/* </div> */}
                 <div
                     id='list'
-                    className='text-center text-4xl font-extrabold my-5 mt-16 
+                    className='text-center text-4xl font-extrabold mb-5  mt-5
           bg-gradient-to-r from-rose-600 to-yellow-500   
           text-transparent bg-clip-text'
                 >
@@ -305,9 +287,10 @@ export default function Home() {
 
                 <div className='grid grid-cols-1 gap-14 md:px-28 lg:grid lg:grid-cols-3 lg:gap-10 lg:w-11/12 2xl:w-10/12  rounded  p-10  m-auto'>
                     {albums?.map((item, index) => {
+                        console.log("ratings", ratings, id)
                         return (
                             <BaseCard
-                                vote={_.find(ratings, (o) => o?.accountId == id && o?.albumId == item.id)}
+                                vote={_.find(ratings, (o) => o?.accountId == username && o?.albumId == item.id)}
                                 point={_.find(mapAlbumPoint(), (o) => o.id == item.id)}
                                 key={index}
                                 data={item}

@@ -85,6 +85,7 @@ export default function ShowResult() {
     const [albums, setAlbums] = useState([]);
     const [authors, setAuthors] = useState([]);
     const [ratings, setRatings] = useState([]);
+    const [key, setKey] = useState()
     const swiperRef = useRef()
     const { id } = useSelector((state) => state?.auth);
     const [my_swiper, set_my_swiper] = useState({});
@@ -127,22 +128,35 @@ export default function ShowResult() {
             clearInterval(intervalId);
         };
     }, [intervalId]);
+    useEffect(() => {
+        window.addEventListener("keydown", (e) => {
+
+            if (e.key == "ArrowRight" ||
+                e.key == "ArrowUp" ||
+                e.key == "ArrowDown" ||
+                e.key == "ArrowLeft") {
+                setKey(e.key + new Date().getMilliseconds())
+            }
+
+        });
+
+    }, []);
+    useEffect(() => {
+
+        if (String(key).includes("ArrowRight") || String(key).includes("ArrowUp")) {
+            key && my_swiper.slideNext()
+        } else if (String(key).includes("ArrowLeft") || String(key).includes("ArrowDown")) {
+            key && my_swiper.slidePrev()
+        }
+
+    }, [key]);
     return (
         <div className='flex h-screen bg-result bg-cover bg-center justify-center items-center'>
             {/* <div className='fixed top-2 left-2'>  <NavLink to="/">Home</NavLink></div> */}
             <ReactCanvasConfetti refConfetti={getInstance} style={canvasStyles} />
-            {/* <div className='flex justify-center items-center mt-10 mb-3'>
-                <FaStar className='text-yellow-500 animate-pulse ' size={24} />
-                <FaStar className='text-yellow-500' size={28} />
-                <FaStar className='text-yellow-500 animate-pulse' size={32} />
-                <FaStar className='text-yellow-500' size={28} />
-                <FaStar className='text-yellow-500 animate-pulse' size={24} />
-            </div> */}
-            {/* <div className='text-center text-4xl font-extrabold    bg-gradient-to-r from-rose-600 via-orange-400 to-yellow-500  animate-gradient text-transparent bg-clip-text'>
-                FRIWO RESULT VOTING{' '}
-            </div> */}
+
             <div className='flex gap-5 items-center justify-center'></div>
-            <div className='py-4 w-10/12 m-auto friwo-flag'>
+            <div className='py-4 w-10/12 m-auto friwo-flag  '>
                 <Swiper
                     slidesPerView={"auto"}
                     onInit={(ev) => {
@@ -161,13 +175,8 @@ export default function ShowResult() {
                     }}
                     pagination={true}
                     onSlideChange={(swiperCore) => {
-                        const {
-                            activeIndex,
-                            snapIndex,
-                            previousIndex,
-                            realIndex,
-                        } = swiperCore;
-                        console.log({ activeIndex, snapIndex, previousIndex, realIndex });
+
+
                         startAnimation()
                         setTimeout(() => { pauseAnimation() }, 1200)
                     }}
@@ -188,7 +197,9 @@ export default function ShowResult() {
                                 <SwiperSlide>
                                     <div className='w-full'>
                                         <BaseCardResult
+                                            ratingList={_.filter(ratings, o => o?.albumId == item?.id)}
                                             length={mapAlbumPoint()?.length}
+                                            ratings={ratings}
                                             key={index}
                                             rank={index}
                                             point={_.find(mapAlbumPoint(), (o) => o.id == item.id)}

@@ -4,8 +4,9 @@ import { useEffect, useState } from 'react';
 import { TiUser } from "react-icons/ti";
 import { FaRankingStar } from "react-icons/fa6";
 import { FaHeart } from "react-icons/fa";
+import BaseModalRating from './BaseModalRating';
 
-export default function BaseCardResult({ data, auth, point, rank, length }) {
+export default function BaseCardResult({ ratingList, data, auth, point, rank, length }) {
     const [pathList, setPathList] = useState([])
     useEffect(() => {
 
@@ -25,9 +26,8 @@ export default function BaseCardResult({ data, auth, point, rank, length }) {
         <div class="p-5 pt-2">
 
             <div className='flex items-center justify-center gap-3 mb-3' >
+                <BaseModalRating ratingList={ratingList} id={data?.id}> Vote {point?.point}</BaseModalRating>
 
-                <div className='bg-rose-500 px-4 py-1 rounded-md shadow-2xl font-semibold text-white flex justify-center items-center gap-2 '> <FaHeart className='animate-pulse' />
-                    Vote {point?.point}</div>
             </div>
         </div>
         {/* <div class="p-5 pt-2">

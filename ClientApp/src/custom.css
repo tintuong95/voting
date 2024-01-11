@@ -44,7 +44,7 @@ body {
   .bg-result{
     width: 100%;
     background-image:  linear-gradient(to bottom, rgba(255, 255, 255, 0.418), rgba(247, 247, 247, 0.568)),
-    url('./bg-2.jpg');
+    url('./2024.png');
     
   }
   .lds-ellipsis {

@@ -25,6 +25,7 @@ import ReactCanvasConfetti from "react-canvas-confetti";
 import { NavLink } from 'react-router-dom';
 import BaseCard from './BaseCard';
 import BaseCardView from './BaseCardView';
+import { useDebounce } from 'use-debounce';
 function randomInRange(min, max) {
     return Math.random() * (max - min) + min;
 }
@@ -54,7 +55,7 @@ export default function ShowSlider() {
     const refAnimationInstance = useRef(null);
     const [intervalId, setIntervalId] = useState();
     const navigate = useNavigate()
-
+    const mySwiper = useRef()
     const getInstance = useCallback((instance) => {
         refAnimationInstance.current = instance;
     }, []);
@@ -91,7 +92,7 @@ export default function ShowSlider() {
     const { id } = useSelector((state) => state?.auth);
     const [my_swiper, set_my_swiper] = useState({});
 
-
+    const [key, setKey] = useState()
     const fetchAllData = () => {
         Promise.all([axios.get('/album'), axios.get('/author'), axios.get('/rating'), axios.get('/account')])
             .then((r) => {
@@ -115,67 +116,91 @@ export default function ShowSlider() {
             clearInterval(intervalId);
         };
     }, [intervalId]);
+
+
+
+    useEffect(() => {
+        window.addEventListener("keydown", (e) => {
+
+            if (e.key == "ArrowRight" ||
+                e.key == "ArrowUp" ||
+                e.key == "ArrowDown" ||
+                e.key == "ArrowLeft") {
+                setKey(e.key + new Date().getMilliseconds())
+            }
+
+        });
+
+    }, []);
+    useEffect(() => {
+        if (String(key).includes("ArrowRight") || String(key).includes("ArrowUp")) {
+            key && my_swiper.slideNext()
+        } else if (String(key).includes("ArrowLeft") || String(key).includes("ArrowDown")) {
+            key && my_swiper.slidePrev()
+        }
+
+    }, [key]);
     return (
-        <div className='flex h-screen bg-result bg-cover bg-center justify-center items-center'>
-            <div className=''>
-                <div className='flex gap-5 items-center justify-center'></div>
-                <div className='py-4 w-10/12 m-auto friwo-flag'>
-                    <Swiper
-                        slidesPerView={"auto"}
-                        onInit={(ev) => {
-                            set_my_swiper(ev)
-                        }}
-                        effect={'coverflow'}
-                        grabCursor={true}
-                        centeredSlides={true}
+        <>
 
-                        coverflowEffect={{
-                            rotate: 50,
-                            stretch: 0,
-                            depth: 100,
-                            modifier: 1,
-                            slideShadows: true,
-                        }}
-                        pagination={true}
-                        onSlideChange={(swiperCore) => {
-                            const {
-                                activeIndex,
-                                snapIndex,
-                                previousIndex,
-                                realIndex,
-                            } = swiperCore;
-                            console.log({ activeIndex, snapIndex, previousIndex, realIndex });
-                            startAnimation()
-                            setTimeout(() => { pauseAnimation() }, 1200)
-                        }}
-                        modules={[EffectCoverflow, Pagination]}
-                        className='mySwiper p-4 pb-20'
-                    >
+            <div className='flex h-screen bg-result bg-cover bg-center justify-center items-center overflow-hidden'>
 
-                        {_(albums)
+                <div className=''>
 
-                            .map((item, index) => {
+                    <div className='flex gap-5 items-center justify-center'></div>
+                    <div className='py-4 w-10/12 m-auto friwo-flag '>
+                        <Swiper
 
-                                return (
-                                    <SwiperSlide>
-                                        <div className='w-full'>
-                                            <BaseCardView
-                                                length={albums?.length}
-                                                key={index}
+                            slidesPerView={"auto"}
+                            onInit={(ev) => {
+                                set_my_swiper(ev)
+                            }}
+                            effect={'coverflow'}
+                            grabCursor={true}
+                            centeredSlides={true}
+
+                            coverflowEffect={{
+                                rotate: 50,
+                                stretch: 0,
+                                depth: 100,
+                                modifier: 1,
+                                slideShadows: true,
+                            }}
+                            pagination={true}
+                            onSlideChange={(swiperCore) => {
 
 
-                                                data={item}
-                                                auth={_.find(authors, (i) => i?.id == item?.authorId)}
-                                            />
-                                        </div>
-                                    </SwiperSlide>
-                                );
-                            })
-                            .value()}
-                    </Swiper>
+                                startAnimation()
+                                setTimeout(() => { pauseAnimation() }, 1200)
+                            }}
+                            modules={[EffectCoverflow, Pagination]}
+                            className='mySwiper p-4 pb-20'
+                        >
+
+                            {_(albums)
+
+                                .map((item, index) => {
+
+                                    return (
+                                        <SwiperSlide>
+                                            <div className='w-full'>
+                                                <BaseCardView
+                                                    length={albums?.length}
+                                                    key={index}
+
+
+                                                    data={item}
+                                                    auth={_.find(authors, (i) => i?.id == item?.authorId)}
+                                                />
+                                            </div>
+                                        </SwiperSlide>
+                                    );
+                                })
+                                .value()}
+                        </Swiper>
+                    </div>
+                    <FloatButton icon={<HomeOutlined />} onClick={() => navigate("/")} />
                 </div>
-                <FloatButton icon={<HomeOutlined />} onClick={() => navigate("/")} />
-            </div>
-        </div>
+            </div></>
     );
 }

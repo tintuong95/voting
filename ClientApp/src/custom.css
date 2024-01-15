@@ -115,18 +115,18 @@ body {
   }
 
   .friwo-flag .swiper-slide-next {
-    filter: blur(4px);
+    filter: blur(10px);
   }
 
   .friwo-flag .swiper-slide-prev {
-    filter: blur(8px);
+    filter: blur(10px);
   }
   
   .friwo-flag .swiper-slide-visible {
-    filter: blur(8px);
+    filter: blur(10px);
   }
   .friwo-flag .swiper-slide-visible {
-    filter: blur(8px);
+    filter: blur(10px);
   }
   .friwo-flag .swiper-slide-active {
     filter: blur(0px);

@@ -65,6 +65,9 @@ const BaseModal = ({ data, vote }) => {
             .then(r => {
                 mitt.emit("fire")
             })
+            //.then(r => {
+            //    mitt.emit("HIDE_DETAIL_BY_ID_" + data.id)
+            //})
             .catch(e => {
                 api.error({
                     message: `Vote failture!`,

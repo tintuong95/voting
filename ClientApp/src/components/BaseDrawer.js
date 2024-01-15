@@ -13,8 +13,12 @@ const BaseDrawer = ({ data, auth, point, vote }) => {
     const [open, setOpen] = useState(false);
     const [pathList, setPathList] = useState([]);
     useMittOn('SHOW_DETAIL_BY_ID_' + data?.id, () => {
-        console.log("hihi", data?.id)
+
         setOpen(true);
+    });
+    useMittOn('HIDE_DETAIL_BY_ID_' + data?.id, () => {
+
+        setOpen(false);
     });
     const showDrawer = () => {
         setOpen(true);
